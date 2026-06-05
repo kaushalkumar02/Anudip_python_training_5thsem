@@ -1,15 +1,32 @@
 # Program: Remove all occurrences of a given number from a list
 
-nums = []
+numbers = []
 
-print("Enter 20 numbers:")
-for i in range(20):
-    n = int(input(f"Number {i+1}: "))
-    nums.append(n)
+print("Enter any 20 numbers : ")
+for _ in range(20):
+    numbers.append(int(input()))
 
-x = int(input("\nEnter number to remove from the list: "))
+element = int(input("Enter number to remove duplicates: "))
 
-# Remove all occurrences
-nums = [i for i in nums if i != x]
+frequency = numbers.count(element)
 
-print("\nUpdated list:", nums)
+if frequency == 0:
+    print("element not found")
+
+elif frequency == 1:
+    print("no duplicates found")
+
+else:
+    numbers.reverse()
+
+    removed = 0
+    for i in range(len(numbers)):
+        if numbers[i] == element and removed < frequency - 1:
+            numbers[i] = None
+            removed += 1
+
+    numbers = [x for x in numbers if x is not None]
+    numbers.reverse()
+
+    print("After removing duplicates")
+    print(numbers)
