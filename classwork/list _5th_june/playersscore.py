@@ -9,3 +9,4 @@ print("Player\t\tScore")
 
 for i in range(11):
     print(players[i][0], "\t\t", players[i][1])
+    
