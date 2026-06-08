@@ -1,0 +1,106 @@
+# --------------------------------------------------
+# Problem Statement:
+# Analyze library book availability and perform the following:
+# 1. Display books that are currently unavailable.
+# 2. Count the number of available books.
+# 3. Find the book with the maximum copies.
+# 4. Create a list of books having less than 3 copies.
+# 5. Calculate the total number of books available.
+# --------------------------------------------------
+
+# Sample Data
+books = {
+    "Python Basics": 5,
+    "Data Structures": 0,
+    "Machine Learning": 3,
+    "Java Programming": 2,
+    "DBMS": 0,
+    "Operating Systems": 6,
+    "Networking": 4,
+    "Cloud Computing": 1,
+    "Cyber Security": 0,
+    "Web Development": 7
+}
+
+# --------------------------------------------------
+# Validation Section
+# --------------------------------------------------
+
+is_valid = True
+
+# Check whether books is a dictionary
+if not isinstance(books, dict):
+    print("Invalid data: Books should be stored in a dictionary.")
+    is_valid = False
+
+# Validate book names and copy counts
+if is_valid:
+    for book, copies in books.items():
+
+        # Book name must be a string
+        if not isinstance(book, str):
+            print("Invalid book name found.")
+            is_valid = False
+            break
+
+        # Copies must be an integer
+        if not isinstance(copies, int):
+            print(f"Invalid copy count for {book}.")
+            is_valid = False
+            break
+
+        # Copies cannot be negative
+        if copies < 0:
+            print(f"Negative copy count found for {book}.")
+            is_valid = False
+            break
+
+# --------------------------------------------------
+# Processing Section
+# --------------------------------------------------
+
+if is_valid:
+
+    # Books that are unavailable
+    unavailable_books = [
+        book for book, copies in books.items()
+        if copies == 0
+    ]
+
+    # Count available books
+    available_books_count = sum(
+        1 for copies in books.values()
+        if copies > 0
+    )
+
+    # Book with maximum copies
+    max_book = max(books, key=books.get)
+    max_copies = books[max_book]
+
+    # Books having less than 3 copies
+    less_than_3 = [
+        book for book, copies in books.items()
+        if copies < 3
+    ]
+
+    # Total number of books available
+    total_books = sum(books.values())
+
+    # --------------------------------------------------
+    # Output Section
+    # --------------------------------------------------
+
+    print("Books currently unavailable:")
+    print(unavailable_books)
+
+    print("\nNumber of available books:")
+    print(available_books_count)
+
+    print("\nBook with maximum copies:")
+    print(f"{max_book} - {max_copies} copies")
+
+    print("\nBooks having less than 3 copies:")
+    print(less_than_3)
+
+    print("\nTotal number of books available:")
+    print(total_books)
