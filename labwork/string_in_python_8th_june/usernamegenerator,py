@@ -1,0 +1,46 @@
+# Problem Statement:
+# Username Generator System
+# A student enters: "Rahul Sharma"
+# Tasks:
+# 1. Remove spaces
+# 2. Convert to lowercase
+# 3. Append current year (2026)
+# 4. If username length exceeds 12, keep only first 12 characters
+# 5. Count vowels in generated username
+# 6. Count consonants
+# 7. Display username statistics
+
+name = "Rahul Sharma"
+
+# 1. Remove spaces
+clean_name = name.replace(" ", "")
+
+# 2. Convert to lowercase
+username = clean_name.lower()
+
+# 3. Append year
+username = username + "2026"
+
+# 4. Limit to 12 characters if needed
+if len(username) > 12:
+    username = username[:12]
+
+# 5. Count vowels and consonants
+vowels = "aeiou"
+vowel_count = 0
+consonant_count = 0
+
+for ch in username:
+    if ch.isalpha():
+        if ch in vowels:
+            vowel_count += 1
+        else:
+            consonant_count += 1
+
+# Output
+print("Original Name:", name)
+print("Generated Username:", username)
+print("Username Length:", len(username))
+print("Vowels:", vowel_count)
+print("Consonants:", consonant_count)
+print("Status: Username Generated Successfully")
