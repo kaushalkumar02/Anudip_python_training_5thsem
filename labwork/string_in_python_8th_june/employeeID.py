@@ -14,42 +14,65 @@
 # 7. Find sum of all digits
 # 8. Display whether ID is valid or invalid
 
-employee_id = "EMP2026ANUJ458"
+emp_id = "EMP2026ANUJ458"
 
-# Count uppercase letters
-uppercase_count = sum(1 for ch in employee_id if ch.isupper())
+# 1. Count uppercase letters
+upper_count = 0
 
-# Count digits
-digit_count = sum(1 for ch in employee_id if ch.isdigit())
+# 2. Count digits
+digit_count = 0
 
-# Extract joining year
-joining_year = employee_id[3:7]
+# list of digits
+digit_list = []
 
-# Extract employee name
-employee_name = employee_id[7:-3]
+for ch in emp_id:
+    if ch.isupper():
+        upper_count = upper_count + 1
 
-# Validation checks
-starts_with_emp = employee_id.startswith("EMP")
-year_valid = employee_id[3:7].isdigit() and len(employee_id[3:7]) == 4
-ends_with_3_digits = employee_id[-3:].isdigit()
+    elif ch.isdigit():
+        digit_count = digit_count + 1
+        digit_list.append(ch)
 
-is_valid = starts_with_emp and year_valid and ends_with_3_digits
+# 3. Extract joining year (position fixed)
+joining_year = emp_id[3:7]
 
-# List of digits
-digit_list = [int(ch) for ch in employee_id if ch.isdigit()]
+# 4. Extract employee name
+employee_name = emp_id[7:11]
 
-# Sum of digits
-digit_sum = sum(digit_list)
+# 5. Validation rules
+rule1 = False
+rule2 = False
+rule3 = False
 
-# Result status
-status = "Valid" if is_valid else "Invalid"
+# starts with EMP
+if emp_id[0:3] == "EMP":
+    rule1 = True
 
-# Output
-print("Employee ID:", employee_id)
-print("Uppercase Letters:", uppercase_count)
-print("Digits:", digit_count)
+# year is 4 digits
+if emp_id[3:7].isdigit():
+    rule2 = True
+
+# last 3 digits
+if emp_id[-3:].isdigit():
+    rule3 = True
+
+# final validation
+if rule1 and rule2 and rule3:
+    status = "Valid ID"
+else:
+    status = "Invalid ID"
+
+# sum of digits
+digit_sum = 0
+for d in digit_list:
+    digit_sum = digit_sum + int(d)
+
+# OUTPUT
+print("Employee ID:", emp_id)
+print("Uppercase Letters:", upper_count)
+print("Digits Count:", digit_count)
 print("Joining Year:", joining_year)
 print("Employee Name:", employee_name)
-print("Digit List:", digit_list)
+print("Digits List:", digit_list)
 print("Sum of Digits:", digit_sum)
 print("ID Status:", status)
