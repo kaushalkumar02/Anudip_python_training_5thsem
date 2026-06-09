@@ -18,37 +18,56 @@
 
 password = "Python@2026!"
 
-# Counters
-upper_count = sum(1 for ch in password if ch.isupper())
-lower_count = sum(1 for ch in password if ch.islower())
-digit_count = sum(1 for ch in password if ch.isdigit())
-special_count = sum(1 for ch in password if not ch.isalnum())
+# 1. Count uppercase letters
+upper = 0
+# 2. Count lowercase letters
+lower = 0
+# 3. Count digits
+digits = 0
+# 4. Count special characters
+special = 0
 
-# Extract digits and special characters
-digits_list = [ch for ch in password if ch.isdigit()]
-special_list = [ch for ch in password if not ch.isalnum()]
+# lists for digits and special characters
+digit_list = []
+special_list = []
 
-# Strength check conditions
+# loop through password
+for ch in password:
+    if ch.isupper():
+        upper = upper + 1
+
+    elif ch.islower():
+        lower = lower + 1
+
+    elif ch.isdigit():
+        digits = digits + 1
+        digit_list.append(ch)
+
+    else:
+        special = special + 1
+        special_list.append(ch)
+
+# 5. Conditions for strong password
 length_ok = len(password) >= 8
-upper_ok = upper_count >= 1
-lower_ok = lower_count >= 1
-digit_ok = digit_count >= 1
-special_ok = special_count >= 1
+upper_ok = upper >= 1
+lower_ok = lower >= 1
+digit_ok = digits >= 1
+special_ok = special >= 1
 
-# Determine strength
+# 6. Determine strength
 if length_ok and upper_ok and lower_ok and digit_ok and special_ok:
     strength = "Strong"
-elif length_ok and (upper_count + lower_count + digit_count >= 3):
+elif length_ok and (upper + lower + digits >= 3):
     strength = "Medium"
 else:
     strength = "Weak"
 
-# Output
+# OUTPUT
 print("Password:", password)
-print("Uppercase Letters:", upper_count)
-print("Lowercase Letters:", lower_count)
-print("Digits:", digit_count)
-print("Special Characters:", special_count)
-print("Digits Found:", digits_list)
+print("Uppercase Letters:", upper)
+print("Lowercase Letters:", lower)
+print("Digits:", digits)
+print("Special Characters:", special)
+print("Digits Found:", digit_list)
 print("Special Characters Found:", special_list)
 print("Password Strength:", strength)
