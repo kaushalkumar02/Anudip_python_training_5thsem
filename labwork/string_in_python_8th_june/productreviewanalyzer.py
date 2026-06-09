@@ -10,39 +10,69 @@
 # 5. Count words having more than 5 characters
 # 6. Display words in reverse order
 # 7. Create list of unique word
+# Product Review Analyzer
+
 review = "This product is excellent excellent excellent and very useful"
-# Split into words
+
+# 1. Split sentence into words
 words = review.split()
-# 1. Total words
-total_words = len(words)
-# 2. Word frequency dictionary
+
+# 2. Total words
+total_words = 0
+
+for w in words:
+    total_words = total_words + 1
+
+# 3. Word frequency
 freq = {}
-for word in words:
-    freq[word] = freq.get(word, 0) + 1
-# 3. Most frequent word
-most_frequent = max(freq, key=freq.get)
-# 4. Words appearing only once
-once_words = [word for word in freq if freq[word] == 1]
 
-# 5. Words having more than 5 characters
-long_words = [word for word in words if len(word) > 5]
+for w in words:
+    if w in freq:
+        freq[w] = freq[w] + 1
+    else:
+        freq[w] = 1
 
-# 6. Words in reverse order
-reverse_words = words[::-1]
+# 4. Most frequent word
+max_word = ""
+max_count = 0
 
-# 7. Unique words list
-unique_words = list(freq.keys())
+for w in freq:
+    if freq[w] > max_count:
+        max_count = freq[w]
+        max_word = w
 
-# Output
-print("Review:", review)
+# 5. Words appearing only once
+once_words = []
+
+for w in freq:
+    if freq[w] == 1:
+        once_words.append(w)
+
+# 6. Words having more than 5 characters
+long_words = []
+
+for w in words:
+    if len(w) > 5:
+        long_words.append(w)
+
+# 7. Reverse words
+reverse_words = []
+
+for i in range(len(words)-1, -1, -1):
+    reverse_words.append(words[i])
+
+# 8. Unique words
+unique_words = []
+
+for w in words:
+    if w not in unique_words:
+        unique_words.append(w)
+
+# OUTPUT
 print("Total Words:", total_words)
-
-print("\nWord Frequencies:")
-for word, count in freq.items():
-    print(word, "->", count)
-
-print("\nMost Frequent Word:", most_frequent)
+print("Word Frequency:", freq)
+print("Most Frequent Word:", max_word)
 print("Words Appearing Once:", once_words)
-print("Words Longer Than 5 Characters:", long_words)
-print("Words in Reverse Order:", reverse_words)
+print("Words > 5 letters:", long_words)
+print("Reverse Order:", reverse_words)
 print("Unique Words:", unique_words)
