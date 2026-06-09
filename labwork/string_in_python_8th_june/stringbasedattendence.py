@@ -11,19 +11,6 @@
 # 3. Find longest consecutive Present streak
 # 4. Find longest consecutive Absent streak
 # 5. Check if attendance is below 75%
-# Problem Statement:
-# String-Based Attendance Tracker
-# Attendance of a student for 15 days:
-# "PPAPPPAAPPPPAPP"
-# Rules:
-# P = Present
-# A = Absent
-# Tasks:
-# 1. Count Present and Absent days
-# 2. Calculate attendance percentage
-# 3. Find longest consecutive Present streak
-# 4. Find longest consecutive Absent streak
-# 5. Check if attendance is below 75%
 
 attendance = "PPAPPPAAPPPPAPP"
 
