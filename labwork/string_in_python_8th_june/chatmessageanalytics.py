@@ -13,48 +13,69 @@
 
 message = "Python is awesome and Python is easy to learn"
 
-# Split message into words
+# split into words
 words = message.split()
 
-# 1. Total characters (excluding spaces OR including spaces depends on requirement)
-total_characters = len(message)
+# 1. total characters
+total_characters = 0
+for ch in message:
+    total_characters = total_characters + 1
 
-# 2. Total words
-total_words = len(words)
+# 2. total words
+total_words = 0
+for w in words:
+    total_words = total_words + 1
 
-# 3. Longest and shortest word
-longest_word = max(words, key=len)
-shortest_word = min(words, key=len)
+# 3. longest word
+longest_word = ""
+for w in words:
+    if len(w) > len(longest_word):
+        longest_word = w
 
-# 4. Occurrences of "Python"
-python_count = words.count("Python")
+# 4. shortest word
+shortest_word = words[0]
+for w in words:
+    if len(w) < len(shortest_word):
+        shortest_word = w
 
-# 5. Words having more than 4 characters
-long_words = [word for word in words if len(word) > 4]
+# 5. occurrences of "Python"
+python_count = 0
+for w in words:
+    if w == "Python":
+        python_count = python_count + 1
 
-# 6. Words starting with a vowel
+# 6. words > 4 characters
+long_words = []
+for w in words:
+    if len(w) > 4:
+        long_words.append(w)
+
+# 7. words starting with vowel
 vowels = "aeiouAEIOU"
-vowel_start_words = [word for word in words if word[0] in vowels]
+vowel_words = []
+for w in words:
+    if w[0] in vowels:
+        vowel_words.append(w)
 
-# 7. Count vowels and consonants
+# 8. vowels and consonants count
 vowel_count = 0
 consonant_count = 0
 
 for ch in message:
     if ch.isalpha():
         if ch in vowels:
-            vowel_count += 1
+            vowel_count = vowel_count + 1
         else:
-            consonant_count += 1
+            consonant_count = consonant_count + 1
 
-# Output
+# OUTPUT
 print("Message:", message)
 print("Total Characters:", total_characters)
 print("Total Words:", total_words)
 print("Longest Word:", longest_word)
 print("Shortest Word:", shortest_word)
-print("Occurrences of Python:", python_count)
-print("Words Longer Than 4 Characters:", long_words)
-print("Words Starting With Vowel:", vowel_start_words)
+print("Python Count:", python_count)
+print("Words > 4 characters:", long_words)
+print("Words starting with vowel:", vowel_words)
 print("Vowels:", vowel_count)
 print("Consonants:", consonant_count)
