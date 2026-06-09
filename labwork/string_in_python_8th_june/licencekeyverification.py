@@ -9,42 +9,60 @@
 # 5. Remove hyphens and display merged key
 # 6. Create list of all groups
 # 7. Display whether key format is valid
-
 license_key = "ABCD-EFGH-IJKL-MNOP"
 
 # 1. Split into groups
 groups = license_key.split("-")
 
 # 2. Check number of groups
-num_groups = len(groups)
+if len(groups) == 4:
+    group_check = True
+else:
+    group_check = False
 
 # 3. Check each group length
-valid_groups = all(len(group) == 4 for group in groups)
+length_check = True
+
+for g in groups:
+    if len(g) != 4:
+        length_check = False
 
 # 4. Count letters
-total_letters = sum(len(group) for group in groups)
-
-# 5. Count vowels
-vowels = "AEIOUaeiou"
-vowel_count = 0
+letter_count = 0
 
 for ch in license_key:
-    if ch.isalpha() and ch in vowels:
-        vowel_count += 1
+    if ch.isalpha():
+        letter_count = letter_count + 1
 
-# 6. Merged key (remove hyphens)
-merged_key = license_key.replace("-", "")
+# 5. Count vowels
+vowel_count = 0
+vowels = "AEIOUaeiou"
 
-# 7. Format validity
-is_valid = (num_groups == 4) and valid_groups
+for ch in license_key:
+    if ch in vowels:
+        vowel_count = vowel_count + 1
 
-status = "Valid" if is_valid else "Invalid"
+# 6. Remove hyphens
+merged_key = ""
 
-# Output
+for ch in license_key:
+    if ch != "-":
+        merged_key = merged_key + ch
+
+# 7. Create list of groups (already done above)
+group_list = groups
+
+# 8. Final validation
+if group_check and length_check:
+    status = "Valid Key Format"
+else:
+    status = "Invalid Key Format"
+
+# OUTPUT
 print("License Key:", license_key)
-print("Groups:", groups)
-print("Number of Groups:", num_groups)
-print("Total Letters:", total_letters)
-print("Total Vowels:", vowel_count)
+print("Groups:", group_list)
 print("Merged Key:", merged_key)
+print("Total Letters:", letter_count)
+print("Vowels:", vowel_count)
+print("Status:", status)
 print("License Key Status:", status)
