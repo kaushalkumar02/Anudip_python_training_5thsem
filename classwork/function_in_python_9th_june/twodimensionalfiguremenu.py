@@ -1,123 +1,178 @@
-#problem statement
-#create a python program which provide the menu to the user to select two dimensional figure circle, rectangle, square, triangle after selecting the   selected figure.
-#user is again asked to select the operationprovide the inputog corresponding data for the figure after input of corresponding data again provide a menu to select the operation area parameter as per the data provideby user display
-  #  the result of operation this task is repeated again again until user select the option to exit that figure 
-#to import the module
+# =====================================================
+# PROBLEM STATEMENT:
+# Create a Python program which provides a menu to the user
+# to select 2D figures (Circle, Rectangle, Square, Triangle).
+# After selecting figure, user selects operation (Area/Perimeter).
+# Program repeats until user exits.
+# =====================================================
+
+
+# =====================================================
+# MODULE PART (simulating geometry module)
+# =====================================================
+
 import math
 
+# Circle
 def circle_area(r):
     return math.pi * r * r
 
 def circle_perimeter(r):
     return 2 * math.pi * r
 
-def rectangle_area(l, b):
-    return l * b
-
-def rectangle_perimeter(l, b):
-    return 2 * (l + b)
-
+# Square
 def square_area(s):
     return s * s
 
 def square_perimeter(s):
     return 4 * s
 
-def triangle_area(base, height):
-    return 0.5 * base * height
+# Rectangle
+def rectangle_area(l, b):
+    return l * b
+
+def rectangle_perimeter(l, b):
+    return 2 * (l + b)
+
+# Triangle (simple formula: equilateral assumed for simplicity)
+def triangle_area(b, h):
+    return 0.5 * b * h
 
 def triangle_perimeter(a, b, c):
     return a + b + c
 
+
+# =====================================================
+# MAIN PROGRAM PART
+# =====================================================
+
+def get_positive_number(msg):
+    while True:
+        try:
+            val = float(input(msg))
+            if val > 0:
+                return val
+            else:
+                print("Enter positive number only!")
+        except ValueError:
+            print("Invalid input! Enter number.")
+
+
 while True:
-    print("\n===== MENU =====")
+
+    print("\n===== 2D GEOMETRY CALCULATOR =====")
     print("1. Circle")
-    print("2. Rectangle")
-    print("3. Square")
+    print("2. Square")
+    print("3. Rectangle")
     print("4. Triangle")
     print("5. Exit")
 
-    ch = int(input("Enter choice: "))
+    choice = input("Enter your choice: ")
 
-    if ch == 1:
-        r = float(input("Enter radius: "))
+    # ---------------- CIRCLE ----------------
+    if choice == '1':
+        r = get_positive_number("Enter radius: ")
+
         while True:
             print("\n1. Area")
             print("2. Perimeter")
-            print("3. Back")
-            op = int(input("Enter operation: "))
+            print("3. Change Figure")
 
-            if op == 1:
-                print("Area =", circle_area(r))
-            elif op == 2:
-                print("Perimeter =", circle_perimeter(r))
-            elif op == 3:
+            op = input("Enter operation: ")
+
+            if op == '1':
+                print("Area of Circle =", round(circle_area(r), 2))
+
+            elif op == '2':
+                print("Perimeter of Circle =", round(circle_perimeter(r), 2))
+
+            elif op == '3':
                 break
             else:
-                print("Invalid Choice")
+                print("Invalid choice!")
 
-    elif ch == 2:
-        l = float(input("Enter length: "))
-        b = float(input("Enter breadth: "))
+            again = input("Another operation? (Y/N): ").upper()
+            if again != 'Y':
+                break
+
+    # ---------------- SQUARE ----------------
+    elif choice == '2':
+        s = get_positive_number("Enter side: ")
+
         while True:
             print("\n1. Area")
             print("2. Perimeter")
-            print("3. Back")
-            op = int(input("Enter operation: "))
+            print("3. Change Figure")
 
-            if op == 1:
-                print("Area =", rectangle_area(l, b))
-            elif op == 2:
-                print("Perimeter =", rectangle_perimeter(l, b))
-            elif op == 3:
+            op = input("Enter operation: ")
+
+            if op == '1':
+                print("Area of Square =", square_area(s))
+
+            elif op == '2':
+                print("Perimeter of Square =", square_perimeter(s))
+
+            elif op == '3':
                 break
             else:
-                print("Invalid Choice")
+                print("Invalid choice!")
 
-    elif ch == 3:
-        s = float(input("Enter side: "))
+            again = input("Another operation? (Y/N): ").upper()
+            if again != 'Y':
+                break
+
+    # ---------------- RECTANGLE ----------------
+    elif choice == '3':
+        l = get_positive_number("Enter length: ")
+        b = get_positive_number("Enter breadth: ")
+
         while True:
             print("\n1. Area")
             print("2. Perimeter")
-            print("3. Back")
-            op = int(input("Enter operation: "))
+            print("3. Change Figure")
 
-            if op == 1:
-                print("Area =", square_area(s))
-            elif op == 2:
-                print("Perimeter =", square_perimeter(s))
-            elif op == 3:
+            op = input("Enter operation: ")
+
+            if op == '1':
+                print("Area of Rectangle =", rectangle_area(l, b))
+
+            elif op == '2':
+                print("Perimeter of Rectangle =", rectangle_perimeter(l, b))
+
+            elif op == '3':
                 break
             else:
-                print("Invalid Choice")
+                print("Invalid choice!")
 
-    elif ch == 4:
-        while True:
-            print("\n1. Area")
-            print("2. Perimeter")
-            print("3. Back")
-            op = int(input("Enter operation: "))
-
-            if op == 1:
-                base = float(input("Enter base: "))
-                height = float(input("Enter height: "))
-                print("Area =", triangle_area(base, height))
-
-            elif op == 2:
-                a = float(input("Enter side1: "))
-                b = float(input("Enter side2: "))
-                c = float(input("Enter side3: "))
-                print("Perimeter =", triangle_perimeter(a, b, c))
-
-            elif op == 3:
+            again = input("Another operation? (Y/N): ").upper()
+            if again != 'Y':
                 break
 
-            else:
-                print("Invalid Choice")
+    # ---------------- TRIANGLE ----------------
+    elif choice == '4':
+        print("\n1. Area")
+        print("2. Perimeter")
 
-    elif ch == 5:
-        print("Program Ended")
+        op = input("Enter operation: ")
+
+        if op == '1':
+            b = get_positive_number("Enter base: ")
+            h = get_positive_number("Enter height: ")
+            print("Area of Triangle =", triangle_area(b, h))
+
+        elif op == '2':
+            a = get_positive_number("Enter side A: ")
+            b = get_positive_number("Enter side B: ")
+            c = get_positive_number("Enter side C: ")
+            print("Perimeter of Triangle =", triangle_perimeter(a, b, c))
+
+        else:
+            print("Invalid choice!")
+
+    # ---------------- EXIT ----------------
+    elif choice == '5':
+        print("Thank you for using Geometry Calculator!")
         break
 
     else:
-        print("Invalid Choice")
+        print("Invalid figure choice!")
