@@ -1,0 +1,108 @@
+'''Cricket Tournament Statistics 
+Problem Statement 
+Runs scored by players in a tournament are given below. 
+Sample Data 
+runs = { 
+    "Virat": 645, 
+    "Rohit": 512, 
+    "Gill": 698, 
+    "Rahul": 435, 
+    "Hardik": 278, 
+    "Pant": 534, 
+    "Surya": 389, 
+    "Jadeja": 301, 
+    "Iyer": 455, 
+    "KL": 410 
+} 
+Tasks 
+1. Find the Orange Cap winner.  
+2. Find the lowest scorer.  
+3. Calculate total runs scored.  
+4. Display players scoring more than 500 runs.  
+5. Create a list of players scoring below 400.  
+Sample Output 
+Orange Cap Winner: 
+Gill (698 runs) 
+ 
+Lowest Scorer: 
+Hardik (278 runs) 
+ 
+Total Runs: 4657 
+ 
+Players Scoring Above 500: 
+Virat 
+Rohit 
+Gill 
+Pant 
+ 
+Players Scoring Below 400: 
+['Hardik', 'Surya', 'Jadeja']'''
+
+
+#creating dictionary of runs and player
+runs = { 
+    "Virat": 645, 
+    "Rohit": 512, 
+    "Gill": 698, 
+    "Rahul": 435, 
+    "Hardik": 278, 
+    "Pant": 534, 
+    "Surya": 389, 
+    "Jadeja": 301, 
+    "Iyer": 455, 
+    "KL": 410 
+} 
+
+#Find the Orange Cap winner.  
+
+player_max=list(runs.keys())[0]
+runs_max=runs[player_max]
+
+for player, run in runs.items():
+    if run>runs_max:
+        player_max=player
+        runs_max=run
+
+print("Orange Cap Winner: ")
+print(player_max,runs_max,"runs")
+
+#Find the lowest scorer.  
+
+player_min=list(runs.keys())[0]
+runs_min=runs[player_min]
+
+for player, run in runs.items():
+    if run<runs_min:
+        player_min=player
+        runs_min=run
+
+print("The lowest scorer is : ")
+print(player_min,runs_min,"runs")
+
+
+#3. Calculate total runs scored.  
+
+total=sum(runs.values())
+
+print("Total runs:")
+print(total)
+
+
+#4. Display players scoring more than 500 runs. 
+print("Players Scoring Above 500: ")
+for player,run in runs.items():
+    if run>500:
+        print(player)
+
+# 5. Create a list of players scoring below 400.  
+
+print(" Players Scoring Below 400:")
+
+list=[]# for storing players scoring below 400
+
+for player,run in runs.items():
+    if run<400:
+        list.append(player)
+
+print(list)
+    
